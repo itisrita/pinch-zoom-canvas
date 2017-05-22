@@ -15,25 +15,25 @@
             throw 'PinchZoomCanvas constructor: missing arguments canvas or path';
         }
 
-		// Check if exists function requestAnimationFrame
-		this._checkRequestAnimationFrame();
+	// Check if exists function requestAnimationFrame
+	this._checkRequestAnimationFrame();
 
-		var clientWidth  = options.canvas.clientWidth;
-		var clientHeight = options.canvas.clientHeight;
+	var clientWidth  = window.innerWidth || options.canvas.clientWidth;
+	var clientHeight = window.innerHeight || options.canvas.clientHeight;
 
-		this.doubletap            = typeof options.doubletap == 'undefined' ? true : options.doubletap;
-		this.momentum             = options.momentum;
+	this.doubletap            = typeof options.doubletap == 'undefined' ? true : options.doubletap;
+	this.momentum             = options.momentum;
         this.canvas               = options.canvas;
         this.canvas.width         = clientWidth*2;
         this.canvas.height        = clientHeight*2;
-		this.canvas.style.width   = clientWidth+'px';
-		this.canvas.style.height  = clientHeight+'px';
+	this.canvas.style.width   = clientWidth+'px';
+	this.canvas.style.height  = clientHeight+'px';
         this.context              = this.canvas.getContext('2d');
-		this.maxZoom              = (options.maxZoom || 2)*2;
-		this.onZoomEnd            = options.onZoomEnd; // Callback of zoom end
-		this.onZoom               = options.onZoom; // Callback on zoom
-		this.initResizeProperty   = null;
-		this.threshold            = options.threshold || 40;
+	this.maxZoom              = (options.maxZoom || 2)*2;
+	this.onZoomEnd            = options.onZoomEnd; // Callback of zoom end
+	this.onZoom               = options.onZoom; // Callback on zoom
+	this.initResizeProperty   = null;
+	this.threshold            = options.threshold || 40;
 
 		// Init
         this.position = {
@@ -44,18 +44,18 @@
             x: 0.5,
             y: 0.5
         };
-		this.initScale = {
+	this.initScale = {
             x: 0.5,
             y: 0.5
         };
-		this.initPosition = {
-            x: 0,
+	this.initPosition = {
+	    x: 0,
             y: 0
         };
-		this.offeset = {
-			x: 0,
-			y: 0
-		};
+	this.offeset = {
+	    x: 0,
+	    y: 0
+	};
 
         this.lastZoomScale = null;
         this.lastX         = null;
